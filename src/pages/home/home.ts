@@ -23,8 +23,8 @@ export class HomePage {
     let modalPage = this.modalCtrl.create(ItemCreateComponent);
     console.log('222');
     modalPage.onDidDismiss((obj: any) => {
-      let item = obj.item;
-      if (item) {
+      if (obj) {
+        let item = obj.item;
         console.log("Item: ", JSON.stringify(item));
         this.items.push({ title: item.title, amount: item.amount, description: item.description });
         //self.scrollToBottom();
@@ -36,9 +36,11 @@ export class HomePage {
         toast.present();
       }
     });
-
     modalPage.present();
+  }
 
+  delete(item) {
+    this.items.remove(item.$key);
   }
 
 }

@@ -8,7 +8,6 @@ export class ItemCreateComponent {
   public item: any = {};
 
   constructor(public viewCtrl: ViewController) {
-    console.log('1111');
   }
 
   cancelCreateExpense() {
