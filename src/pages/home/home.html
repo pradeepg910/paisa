@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Paisa
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item-sliding *ngFor="let item of items | async">
+      <ion-item>
+        <h2>{{ item.title }} - {{item.amount}}</h2>
+        <p>{{ item.description }}</p>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button icon-only color="primary" (click)="update(item)">
+          <ion-icon name="create"></ion-icon>
+        </button>
+        <button ion-button icon-only color="secondary" (click)="clone(item)">
+          <ion-icon name="copy"></ion-icon>
+        </button>
+      </ion-item-options>
+      <ion-item-options side="left">
+        <button ion-button icon-only color="danger" (click)="delete(item)">
+          <ion-icon name="trash"></ion-icon>
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-fab right bottom>
+    <button ion-fab color="primary">
+      <ion-icon name="create" (click)="createItem()"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>
