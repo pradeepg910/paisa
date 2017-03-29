@@ -21,7 +21,7 @@ export class HomePage {
 
   createItem() {
     let modalPage = this.modalCtrl.create(ItemCreateComponent);
-    console.log('222');
+    modalPage.present();
     modalPage.onDidDismiss((obj: any) => {
       if (obj) {
         let item = obj.item;
@@ -36,7 +36,7 @@ export class HomePage {
         toast.present();
       }
     });
-    modalPage.present();
+
   }
 
   delete(item) {
