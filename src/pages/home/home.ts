@@ -4,6 +4,7 @@ import { NavController, ModalController, ToastController } from 'ionic-angular';
 import {AngularFire, FirebaseListObservable} from 'angularfire2';
 
 import {ItemCreateComponent} from '../item-create/item-create';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'page-home',
@@ -12,11 +13,31 @@ import {ItemCreateComponent} from '../item-create/item-create';
 export class HomePage {
 
   items: FirebaseListObservable<any>;
+  currentTotal: number;
+  today: any;
+
   constructor(public navCtrl: NavController,
     public angFire: AngularFire,
     public modalCtrl: ModalController,
     public toastCtrl: ToastController, ) {
-    this.items = angFire.database.list('/Items');
+    this.today = new Date();
+    this.items = angFire.database.list('/Items', {
+      query: {
+        orderByChild: 'monthYear',
+        equalTo: '2-2017'
+      }
+    });
+    this.calculateMonthlyTotal();
+  }
+
+  calculateMonthlyTotal() {
+    this.items.subscribe((items) => {
+      let _list: Array<any> = new Array();
+      items.forEach((item) => {
+        _list.push(item);
+      });
+      this.currentTotal = _.sum(_.map(_list, 'amount'))
+    });
   }
 
   createItem() {
@@ -25,8 +46,16 @@ export class HomePage {
     modalPage.onDidDismiss((obj: any) => {
       if (obj) {
         let item = obj.item;
+        item.timestamp = this.today.toISOString();
+        item.monthYear = this.today.getMonth() + "-" + this.today.getFullYear();
         console.log("Item: ", JSON.stringify(item));
-        this.items.push({ title: item.title, amount: item.amount, description: item.description });
+        this.items.push({
+          title: item.title,
+          amount: +item.amount,
+          description: item.description,
+          timestamp: item.timestamp,
+          monthYear: item.monthYear
+        });
         //self.scrollToBottom();
         let toast = this.toastCtrl.create({
           message: 'Expense created',
@@ -36,7 +65,6 @@ export class HomePage {
         toast.present();
       }
     });
-
   }
 
   delete(item) {

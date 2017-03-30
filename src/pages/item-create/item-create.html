@@ -1,16 +1,21 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>New Expense</ion-title>
-    <ion-buttons start>
+    <ion-buttons left>
       <button ion-button (click)="cancelCreateExpense()">
-        <ion-icon name="arrow-back"></ion-icon> Cancel
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>New Expense</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="createExpense()">
+        <ion-icon name="checkmark"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <form (ngSubmit)="createExpense()">
+  <form>
     <ion-list inset>
       <ion-item>
         <ion-label>Title</ion-label>
@@ -24,7 +29,7 @@
         <ion-label>Description</ion-label>
         <ion-textarea [(ngModel)]="item.description" name="description"></ion-textarea>
       </ion-item>
-      <button ion-button type="submit" color="dark" block>Add</button>
+      <!-- <button ion-button type="submit" color="dark" block>Add</button> -->
     </ion-list>
   </form>
 </ion-content>

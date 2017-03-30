@@ -55,7 +55,7 @@ font-family: AppFont;
 src: url("../assets/fonts/EBGaramond-Regular.ttf");
 }
 
-//$toolbar-background : #0087be;
+$toolbar-background : #0087be;
 //$list-background-color : white;
 $card-ios-background-color: #f4f4f4;
 $card-md-background-color: #f4f4f4;
@@ -74,10 +74,6 @@ ion-card {
 
 .left-border-primary {
     border-left: 4px solid #0087be;
-}
-
-.segment-md .segment-button {
-    color:black !important;
 }
 
 body, span, button, h1, h2, h3, h4, h5, h6, p, ion-item, ion-title {
