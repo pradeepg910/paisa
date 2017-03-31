@@ -55,17 +55,25 @@ font-family: AppFont;
 src: url("../assets/fonts/EBGaramond-Regular.ttf");
 }
 
-$toolbar-background : #0087be;
-//$list-background-color : white;
+$colors: (
+primary:    #0e2833,
+secondary:  #32db64,
+danger:     #a10210,
+light:      #f4f4f4,
+dark:       #222,
+);
+
+$toolbar-background : #0e2833;
+$list-background-color : white;
 $card-ios-background-color: #f4f4f4;
 $card-md-background-color: #f4f4f4;
 $card-wp-background-color: #f4f4f4;
 scroll-content { background-color: whitesmoke;}
 ion-list .item .item-inner {
-    background: whitesmoke;
+    background: #f4f4f4;
 }
 .item {
-    background-color: whitesmoke !important;
+    background-color: #f4f4f4 !important;
 }
 
 ion-card {
