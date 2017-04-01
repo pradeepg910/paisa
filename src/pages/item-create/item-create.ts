@@ -20,12 +20,25 @@ export class ItemCreateComponent {
   }
 
   createExpense() {
-    this.item.description = this.selectedItems.join(', ');
-    console.log(this.selectedItems);
+    this.setDescription();
+    this.removeSelectedItemFromMyList();
     this.viewCtrl.dismiss({ item: this.item });
   }
 
-  copyFromCart() {
-    console.log("===>>");
+  removeSelectedItemFromMyList() {
+    this.mylist.subscribe((items) => {
+      items.forEach((item) => {
+        this.selectedItems.forEach((selectedItem) => {
+          if (item.name === selectedItem) {
+            this.mylist.remove(item);
+          }
+        });
+      });
+    });
   }
+
+  setDescription() {
+    this.item.description = this.selectedItems.join(', ');
+  }
+
 }
