@@ -4,6 +4,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { MyListPage } from '../pages/mylist/mylist';
 import { TabsPage } from '../pages/tabs/tabs';
+import {HistoryPage} from '../pages/history/history'
 
 import {ItemCreateComponent} from '../pages/item-create/item-create';
 
@@ -26,6 +27,7 @@ export const config = {
     HomePage,
     TabsPage,
     MyListPage,
+    HistoryPage,
     ItemCreateComponent
   ],
   imports: [
@@ -38,6 +40,7 @@ export const config = {
     HomePage,
     TabsPage,
     MyListPage,
+    HistoryPage,
     ItemCreateComponent
   ],
   providers: [
