@@ -25,7 +25,8 @@
 
 <ion-content padding>
   <ion-row>
-    <ion-col width-100>{{ today | date:'MMMM' }} Activity </ion-col>
+    <ion-col width-100>
+      <h2>{{ today | date:'MMMM' }} Activity </h2></ion-col>
   </ion-row>
   <ion-row>
     <ion-col width-50>Total Expenses:</ion-col>
@@ -38,14 +39,6 @@
         <h2>{{ item.title }} - {{item.amount}}</h2>
         <p>{{ item.description }}</p>
       </ion-item>
-      <!--<ion-item-options side="left">
-        <button ion-button icon-only color="primary" (click)="update(item)">
-          <ion-icon name="create"></ion-icon>
-        </button>
-         <button ion-button icon-only color="secondary" (click)="clone(item)">
-          <ion-icon name="copy"></ion-icon>
-        </button>
-      </ion-item-options>-->
       <ion-item-options side="right">
         <button ion-button icon-only color="danger" (click)="delete(item)">
           <ion-icon name="trash"></ion-icon>
@@ -53,10 +46,4 @@
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
-
-  <!-- <ion-fab right bottom>
-    <button ion-fab color="primary">
-      <ion-icon name="add" (click)="createItem()"></ion-icon>
-    </button>
-  </ion-fab> -->
 </ion-content>

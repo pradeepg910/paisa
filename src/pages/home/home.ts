@@ -24,7 +24,7 @@ export class HomePage {
     this.items = angFire.database.list('/Items', {
       query: {
         orderByChild: 'monthYear',
-        equalTo: '2-2017'
+        equalTo: this.today.getMonth() + '-' + this.today.getFullYear()
       }
     });
     this.calculateMonthlyTotal();
@@ -53,6 +53,7 @@ export class HomePage {
           title: item.title,
           amount: +item.amount,
           description: item.description,
+          comments: item.comments,
           timestamp: item.timestamp,
           monthYear: item.monthYear
         });

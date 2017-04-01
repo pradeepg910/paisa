@@ -22,13 +22,12 @@ export class MyListPage {
   }
 
   createItem() {
-    console.log("===>>");
     this.items.push({
       name: this.item.name,
-      store: "Target",
+      store: "",
       timestamp: new Date().toISOString()
     });
-    //self.scrollToBottom();
+    this.item = {};
     let toast = this.toastCtrl.create({
       message: 'Item created',
       duration: 2000,
