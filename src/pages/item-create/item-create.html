@@ -1,18 +1,32 @@
 <ion-header>
   <ion-navbar>
-    <ion-buttons left>
-      <button ion-button (click)="cancelCreateExpense()">
+    <ion-title>
+
+      <ion-row>
+        <ion-col width-25>
+          <ion-buttons left>
+            <button ion-button (click)="cancelCreateExpense()">
         <ion-icon name="arrow-back"></ion-icon>
       </button>
-    </ion-buttons>
-    <ion-title>New Expense</ion-title>
-    <ion-buttons end>
-      <button ion-button (click)="createExpense()">
+          </ion-buttons>
+        </ion-col>
+        <ion-col width-50>
+          <ion-title>New Expense</ion-title>
+        </ion-col>
+        <ion-col width-25>
+          <ion-buttons end>
+            <button ion-button (click)="createExpense()">
         <ion-icon name="checkmark"></ion-icon>
       </button>
-    </ion-buttons>
+          </ion-buttons>
+        </ion-col>
+
+      </ion-row>
+    </ion-title>
+
   </ion-navbar>
 </ion-header>
+
 
 <ion-content padding>
   <form>

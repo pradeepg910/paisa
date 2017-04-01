@@ -52,7 +52,7 @@ $ionicons-font-path: "../assets/fonts";
 
 @font-face {
 font-family: AppFont;
-src: url("../assets/fonts/EBGaramond-Regular.ttf");
+src: url("../assets/fonts/Catamaran-Regular.ttf");
 }
 
 $colors: (
@@ -70,10 +70,10 @@ $card-md-background-color: #f4f4f4;
 $card-wp-background-color: #f4f4f4;
 scroll-content { background-color: whitesmoke;}
 ion-list .item .item-inner {
-    background: #f4f4f4;
+    background: #ffffff;
 }
 .item {
-    background-color: #f4f4f4 !important;
+    background-color: #ffffff !important;
 }
 
 ion-card {
@@ -84,7 +84,7 @@ ion-card {
     border-left: 4px solid #0087be;
 }
 
-body, span, button, h1, h2, h3, h4, h5, h6, p, ion-item, ion-title {
+body, span, button, h1, h2, h3, h4, h5, h6, p, ion-item, ion-title, ion-col {
 font-family: 'AppFont' !important;
 }
 

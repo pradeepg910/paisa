@@ -2,6 +2,9 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { MyListPage } from '../pages/mylist/mylist';
+import { TabsPage } from '../pages/tabs/tabs';
+
 import {ItemCreateComponent} from '../pages/item-create/item-create';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -21,16 +24,20 @@ export const config = {
   declarations: [
     MyApp,
     HomePage,
+    TabsPage,
+    MyListPage,
     ItemCreateComponent
   ],
   imports: [
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, { tabsPlacement: 'top' }),
     AngularFireModule.initializeApp(config)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
+    TabsPage,
+    MyListPage,
     ItemCreateComponent
   ],
   providers: [

@@ -1,7 +1,6 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-
       <ion-row>
         <ion-col width-25>
           <ion-buttons left>
@@ -12,11 +11,11 @@
         </ion-col>
         <ion-col width-50 class="appName">Paisa</ion-col>
         <ion-col width-25>
-          <ion-buttons end>
+          <!-- <ion-buttons end>
             <button ion-button (click)="createItem()">
               <ion-icon name="add"></ion-icon>
             </button>
-          </ion-buttons>
+          </ion-buttons> -->
         </ion-col>
       </ion-row>
     </ion-title>
@@ -24,19 +23,24 @@
 </ion-header>
 
 <ion-content padding>
+
   <ion-row>
-    <ion-col width-100>{{ today | date:'MMMM' }} Activity </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col width-50>Total Expenses:</ion-col>
-    <ion-col width-50 class="total">${{currentTotal}}</ion-col>
+    <ion-col width-90>
+      <ion-item>
+        <ion-input type="text" [(ngModel)]="item.name" name="name" placeholder="add item" autofocus></ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col width-10>
+      <button ion-button icon-only>
+        <ion-icon name="add" (click)="createItem()"></ion-icon>
+      </button>
+    </ion-col>
   </ion-row>
 
   <ion-list>
     <ion-item-sliding *ngFor="let item of items | async">
       <ion-item>
-        <h2>{{ item.title }} - {{item.amount}}</h2>
-        <p>{{ item.description }}</p>
+        <p>{{ item.name }}</p>
       </ion-item>
       <!--<ion-item-options side="left">
         <button ion-button icon-only color="primary" (click)="update(item)">

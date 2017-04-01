@@ -60,7 +60,7 @@ export class HomePage {
         let toast = this.toastCtrl.create({
           message: 'Expense created',
           duration: 2000,
-          position: 'top'
+          position: 'bottom'
         });
         toast.present();
       }
