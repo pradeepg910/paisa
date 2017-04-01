@@ -24,20 +24,37 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-row>
-    <ion-col width-100>
-      <h2>{{ today | date:'MMMM' }} Activity </h2></ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col width-50>Total Expenses:</ion-col>
-    <ion-col width-50 class="total">${{currentTotal}}</ion-col>
-  </ion-row>
+  <ion-grid>
+    <ion-row>
+      <ion-col width-100>
+        <h2>{{ today | date:'MMMM' }} Activity </h2></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col width-50>Total Expenses:</ion-col>
+      <ion-col width-50 class="total">${{currentTotal}}</ion-col>
+    </ion-row>
+  </ion-grid>
 
   <ion-list>
     <ion-item-sliding *ngFor="let item of items | async">
-      <ion-item>
-        <h2>{{ item.title }} - {{item.amount}}</h2>
-        <p>{{ item.description }}</p>
+      <ion-item class="item" text-wrap>
+        <ion-grid>
+          <ion-row wrap>
+            <ion-col width-50 class="expenseTitle">
+              <ion-icon name="cart" item-left></ion-icon>
+              {{ item.title }}
+            </ion-col>
+            <ion-col width-50 class="expenseDay">
+              {{ item.timestamp | date:'EEE'}}
+            </ion-col>
+            <ion-col width-50 class="expenseDesc">{{ item.description }}</ion-col>
+            <ion-col width-50 class="amount">${{item.amount}}</ion-col>
+          </ion-row>
+
+        </ion-grid>
+
+        <!-- <h2>{{ item.title }} - {{item.amount}}</h2> -->
+        <!-- <p>{{ item.description }}</p> -->
       </ion-item>
       <ion-item-options side="right">
         <button ion-button icon-only color="danger" (click)="delete(item)">
