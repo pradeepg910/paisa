@@ -1,3 +1,19 @@
-.tabs {
-  background: red;
+.tabs-md .tabbar{
+  background: #0e2833;
+}
+
+.tabs-md .tab-button[aria-selected=true] .tab-button-icon {
+  color: white;
+}
+
+.tabs-md .tab-button-icon {
+  color: rgba(199, 199, 199, 0.7);
+}
+
+.tabs-md .tab-button[aria-selected=true]{
+  color: white;
+}
+
+.tabs-md .tab-button{
+  color: rgba(199, 199, 199, 0.7);
 }

@@ -74,6 +74,7 @@ export class HomePage {
           title: item.title,
           amount: +item.amount,
           description: item.description,
+          descShort: _.truncate(item.description, { 'length': 20 }),
           comments: item.comments,
           timestamp: item.timestamp,
           monthYear: item.monthYear

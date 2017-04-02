@@ -45,15 +45,15 @@
     <ion-item-sliding *ngFor="let item of items | async">
       <ion-item class="item" text-wrap>
         <ion-grid>
-          <ion-row wrap>
+          <ion-row text-wrap>
             <ion-col width-50 class="expenseTitle">
               <ion-icon name="cart" item-left></ion-icon>
               {{ item.title }}
             </ion-col>
-            <ion-col width-50 class="expenseDay">
+            <ion-col text-wrap width-50 class="expenseDay">
               {{ item.timestamp | date:'EEE'}}
             </ion-col>
-            <ion-col width-50 class="expenseDesc">{{ item.description }}</ion-col>
+            <ion-col width-50>{{ item.descShort }}</ion-col>
             <ion-col width-50 class="amount">${{item.amount}}</ion-col>
           </ion-row>
 
