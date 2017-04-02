@@ -15,6 +15,8 @@ export class HomePage {
   items: FirebaseListObservable<any>;
   currentTotal: number;
   today: any;
+  lastMonthTotal: any;
+  greetMsg: string;
 
   constructor(public navCtrl: NavController,
     public angFire: AngularFire,
@@ -28,6 +30,8 @@ export class HomePage {
       }
     });
     this.calculateMonthlyTotal();
+    this.calculateLastMonthTotal();
+    this.greetMsg = this.greetMessage();
   }
 
   calculateMonthlyTotal() {
@@ -36,8 +40,25 @@ export class HomePage {
       items.forEach((item) => {
         _list.push(item);
       });
-      this.currentTotal = _.sum(_.map(_list, 'amount'))
+      this.currentTotal = _.sum(_.map(_list, 'amount'));
     });
+  }
+
+  calculateLastMonthTotal() {
+    let date = new Date();
+    date.setMonth(date.getMonth() - 1);
+    this.angFire.database.list('/Items', {
+      query: {
+        orderByChild: 'monthYear',
+        equalTo: date.getMonth() + '-' + date.getFullYear()
+      }
+    }).subscribe((items) => {
+      let _list: Array<any> = new Array();
+      items.forEach((item) => {
+        _list.push(item);
+      });
+      this.lastMonthTotal = _.sum(_.map(_list, 'amount'));
+    });;
   }
 
   createItem() {
@@ -70,6 +91,18 @@ export class HomePage {
 
   delete(item) {
     this.items.remove(item.$key);
+  }
+
+  greetMessage() {
+    let hours = new Date().getHours();
+    let greet;
+    if (hours < 12)
+      greet = 'Good Morning';
+    else if (hours >= 12 && hours <= 17)
+      greet = 'Good Afternoon';
+    else if (hours >= 17 && hours <= 24)
+      greet = 'Good Evening';
+    return greet;
   }
 
 }

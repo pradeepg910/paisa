@@ -20,7 +20,7 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
     });
-    this.toast(this.greetMessage());
+    //this.toast(this.greetMessage());
   }
 
   toast(message) {
@@ -32,15 +32,5 @@ export class MyApp {
     toast.present();
   }
 
-  greetMessage() {
-    let hours = new Date().getHours();
-    let greet;
-    if (hours < 12)
-      greet = 'Good Morning..';
-    else if (hours >= 12 && hours <= 17)
-      greet = 'Good Afternoon..';
-    else if (hours >= 17 && hours <= 24)
-      greet = 'Good Evening..';
-    return greet;
-  }
+
 }

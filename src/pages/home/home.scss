@@ -32,4 +32,32 @@ page-home {
     text-overflow: ellipsis;
     white-space: nowrap;
   }
+
+.expenseDetails {
+  padding-bottom: 15px;
+}
+
+.item {
+  padding-top: 0px;
+}
+.item-md {
+  padding-left: 0px;
+}
+.label-md {
+  margin: 0px;
+}
+.grid{
+  padding-bottom: 15px;
+}
+.col{
+  padding: 0px;
+}
+.item-md ion-icon[item-left], .item-md ion-icon[item-right] {
+  margin: 3px;
+}
+
+.listHeader {
+  padding-top: 16px;
+}
+
 }

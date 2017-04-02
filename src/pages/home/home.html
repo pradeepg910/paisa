@@ -1,7 +1,6 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-
       <ion-row>
         <ion-col width-25>
           <ion-buttons left>
@@ -13,8 +12,8 @@
         <ion-col width-50 class="appName">Paisa</ion-col>
         <ion-col width-25>
           <ion-buttons end>
-            <button ion-button (click)="createItem()">
-              <ion-icon name="add"></ion-icon>
+            <button ion-button>
+              <ion-icon name="chatbubbles"></ion-icon>
             </button>
           </ion-buttons>
         </ion-col>
@@ -27,15 +26,22 @@
   <ion-grid>
     <ion-row>
       <ion-col width-100>
-        <h2>{{ today | date:'MMMM' }} Activity </h2></ion-col>
+        <h2>{{greetMsg}}, Pradeep</h2></ion-col>
     </ion-row>
     <ion-row>
       <ion-col width-50>Total Expenses:</ion-col>
       <ion-col width-50 class="total">${{currentTotal}}</ion-col>
     </ion-row>
+    <ion-row>
+      <ion-col width-50>Last Month Expenses:</ion-col>
+      <ion-col width-50 class="total">${{lastMonthTotal}}</ion-col>
+    </ion-row>
   </ion-grid>
 
   <ion-list>
+    <ion-list-header class="listHeader">
+      <h2>{{ today | date:'MMMM' }} Activity </h2>
+    </ion-list-header>
     <ion-item-sliding *ngFor="let item of items | async">
       <ion-item class="item" text-wrap>
         <ion-grid>
@@ -63,4 +69,9 @@
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
+  <ion-fab right bottom>
+    <button ion-fab mini color="primary">
+       <ion-icon name="add" (click)="createItem()"></ion-icon>
+     </button>
+  </ion-fab>
 </ion-content>
