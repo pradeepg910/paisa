@@ -47,11 +47,9 @@ export class ItemCreateComponent {
   removeSelectedItemFromMyList() {
     this.mylist.subscribe((items) => {
       items.forEach((item) => {
-        this.newExpenseForm.value.selectedItems.forEach((selectedItem) => {
-          if (item.name === selectedItem) {
-            this.mylist.remove(item);
-          }
-        });
+        if (_.includes(this.newExpenseForm.value.selectedItems, item.name)) {
+          this.mylist.remove(item);
+        }
       });
     });
   }
