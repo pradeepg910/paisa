@@ -1,21 +1,20 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-
       <ion-row>
         <ion-col width-25>
           <ion-buttons left>
             <button ion-button (click)="cancelCreateExpense()">
-        <ion-icon name="arrow-back"></ion-icon>
-      </button>
+              <ion-icon name="arrow-back"></ion-icon>
+            </button>
           </ion-buttons>
         </ion-col>
-        <ion-col width-50>
+        <ion-col width-50 class="title">
           <ion-title class="title">New Expense</ion-title>
         </ion-col>
         <ion-col width-25>
           <ion-buttons end>
-            <button ion-button (click)="createExpense()">
+            <button ion-button (click)="createExpense()" [disabled]="(!newExpenseForm.valid)">
         <ion-icon name="checkmark"></ion-icon>
       </button>
           </ion-buttons>
@@ -29,22 +28,24 @@
 
 
 <ion-content padding>
-  <form>
+  <form [formGroup]="newExpenseForm">
     <ion-list inset>
       <ion-item>
-        <ion-input placeholder="Merchant" type="text" [(ngModel)]="item.title" name="title" autofocus></ion-input>
+        <!-- <ion-input placeholder="Merchant" type="text" [(ngModel)]="item.title" name="title" autofocus></ion-input> -->
+        <ion-input placeholder="Merchant*" #title ngControl="title" formControlName="title" type="text" [class.invalid]="!newExpenseForm.controls.title.valid" autofocus></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input placeholder="Total" type="number" [(ngModel)]="item.amount" name="amount"></ion-input>
+        <!-- <ion-input placeholder="Total" type="number" [(ngModel)]="item.amount" name="amount"></ion-input> -->
+        <ion-input placeholder="Total*" #amount ngControl="amount" formControlName="amount" type="number" [class.invalid]="!newExpenseForm.controls.amount.valid"></ion-input>
       </ion-item>
-      <ion-item>
-        <ion-label>MyList</ion-label>
-        <ion-select [(ngModel)]="selectedItems" name="selectedItems" multiple="true">
+      <ion-item *ngIf="itemExists">
+        <ion-label>Shopping List</ion-label>
+        <ion-select #list ngControl="selectedItems" formControlName="selectedItems" multiple="true">
           <ion-option *ngFor="let listItem of mylist | async">{{listItem.name}}</ion-option>
         </ion-select>
       </ion-item>
       <ion-item>
-        <ion-textarea placeholder="Comments" [(ngModel)]="item.comments" name="comments"></ion-textarea>
+        <ion-textarea placeholder="Comments" #comments ngControl="comments" formControlName="comments"></ion-textarea>
       </ion-item>
       <!-- <button ion-button type="submit" color="dark" block>Add</button> -->
     </ion-list>

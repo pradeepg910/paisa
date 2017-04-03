@@ -69,13 +69,11 @@ export class HomePage {
         let item = obj.item;
         item.timestamp = this.today.toISOString();
         item.monthYear = this.today.getMonth() + "-" + this.today.getFullYear();
-        console.log("Item: ", JSON.stringify(item));
         this.items.push({
           title: item.title,
           amount: +item.amount,
-          description: item.description,
-          descShort: _.truncate(item.description, { 'length': 20 }),
-          comments: item.comments,
+          description: this.getDescriptionConditionally(item),
+          descShort: _.truncate(item.description, { 'length': 30 }),
           timestamp: item.timestamp,
           monthYear: item.monthYear
         });
@@ -83,13 +81,19 @@ export class HomePage {
         let toast = this.toastCtrl.create({
           message: 'Expense created',
           duration: 2000,
-          position: 'bottom'
+          position: 'top'
         });
         toast.present();
       }
     });
   }
 
+  getDescriptionConditionally(item) {
+    if (_.isEmpty(item.description)) {
+      return item.comments;
+    }
+    return item.description;
+  }
   delete(item) {
     this.items.remove(item.$key);
   }
