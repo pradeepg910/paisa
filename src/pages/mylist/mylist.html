@@ -26,10 +26,9 @@
   <form [formGroup]="myListForm">
     <ion-row>
       <ion-col width-90>
-        <ion-item>
-          <!-- <ion-input type="text" [(ngModel)]="item.name" name="name" placeholder="add item" autofocus></ion-input> -->
-          <ion-input #name ngControl="name" formControlName="name" type="text" [class.invalid]="!myListForm.controls.name.valid"></ion-input>
-        </ion-item>
+        <ng2-completer style="width: 100%" #name ngControl="name" formControlName="name" type="text" [datasource]="dataService" [minSearchLength]="0" [class.invalid]="!myListForm.controls.name.valid"></ng2-completer>
+        <!-- <ion-input type="text" [(ngModel)]="item.name" name="name" placeholder="add item" autofocus></ion-input> -->
+        <!-- <ion-input #name ngControl="name" formControlName="name" type="text" [class.invalid]="!myListForm.controls.name.valid"></ion-input> -->
       </ion-col>
       <ion-col width-10>
         <button ion-button icon-only (click)="createItem()" [disabled]="(!myListForm.valid)">
@@ -41,7 +40,7 @@
   <ion-list>
     <ion-item-sliding *ngFor="let item of items | async">
       <ion-item>
-        <p>{{ item.name }}</p>
+        <h5>{{ item.name }}</h5>
       </ion-item>
       <!--<ion-item-options side="left">
         <button ion-button icon-only color="primary" (click)="update(item)">

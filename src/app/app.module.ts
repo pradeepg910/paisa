@@ -12,6 +12,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import {AngularFireModule} from 'angularfire2';
+import { Ng2CompleterModule } from "ng2-completer";
 
 export const config = {
   apiKey: "AIzaSyCTDcKz5CgF29cxUkeyPrb9I-cxMiyOYVY",
@@ -32,7 +33,8 @@ export const config = {
   ],
   imports: [
     IonicModule.forRoot(MyApp, { tabsPlacement: 'top' }),
-    AngularFireModule.initializeApp(config)
+    AngularFireModule.initializeApp(config),
+    Ng2CompleterModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { NavController, ModalController, ToastController } from 'ionic-angular';
 import {AngularFire, FirebaseListObservable} from 'angularfire2';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { CompleterService, CompleterData } from 'ng2-completer';
 
 @Component({
   selector: 'page-mylist',
@@ -14,15 +15,29 @@ export class MyListPage {
   currentTotal: number;
   myListForm: FormGroup;
 
+  protected dataService: CompleterData;
+  protected searchData = [
+    { item: 'Diapers' },
+    { item: 'Baby Wipes' },
+    { item: 'Chicken' },
+    { item: 'Water Bottles' },
+    { item: 'Paper Towels' },
+    { item: 'Bath Tissues' },
+    { item: 'Ginger Garlic Paste' },
+    { item: 'Curry Leaves' }
+  ];
+
   constructor(public navCtrl: NavController,
     public angFire: AngularFire,
     public modalCtrl: ModalController,
     public toastCtrl: ToastController,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder,
+    private completerService: CompleterService) {
     this.items = angFire.database.list('/MyList');
     this.myListForm = formBuilder.group({
       name: ['', Validators.compose([Validators.required])]
     });
+    this.dataService = completerService.local(this.searchData, 'item', 'item');
   }
 
   createItem() {
