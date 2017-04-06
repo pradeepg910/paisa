@@ -31,12 +31,12 @@
   <form [formGroup]="newExpenseForm">
     <ion-list inset>
       <ion-item>
-        <!-- <ion-input placeholder="Merchant" type="text" [(ngModel)]="item.title" name="title" autofocus></ion-input> -->
-        <ion-input placeholder="Merchant*" #title ngControl="title" formControlName="title" type="text" [class.invalid]="!newExpenseForm.controls.title.valid" autofocus></ion-input>
+        <ion-label floating>Merchant</ion-label>
+        <ion-input #title ngControl="title" formControlName="title" type="text" [class.invalid]="!newExpenseForm.controls.title.valid" autofocus></ion-input>
       </ion-item>
       <ion-item>
-        <!-- <ion-input placeholder="Total" type="number" [(ngModel)]="item.amount" name="amount"></ion-input> -->
-        <ion-input placeholder="Total*" #amount ngControl="amount" formControlName="amount" type="number" [class.invalid]="!newExpenseForm.controls.amount.valid"></ion-input>
+        <ion-label floating>Total</ion-label>
+        <ion-input #amount ngControl="amount" formControlName="amount" type="number" [class.invalid]="!newExpenseForm.controls.amount.valid"></ion-input>
       </ion-item>
       <ion-item *ngIf="itemExists">
         <ion-label>Shopping List</ion-label>

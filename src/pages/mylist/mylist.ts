@@ -14,18 +14,7 @@ export class MyListPage {
   items: FirebaseListObservable<any>;
   currentTotal: number;
   myListForm: FormGroup;
-
-  protected dataService: CompleterData;
-  protected searchData = [
-    { item: 'Diapers' },
-    { item: 'Baby Wipes' },
-    { item: 'Chicken' },
-    { item: 'Water Bottles' },
-    { item: 'Paper Towels' },
-    { item: 'Bath Tissues' },
-    { item: 'Ginger Garlic Paste' },
-    { item: 'Curry Leaves' }
-  ];
+  dataService: CompleterData;
 
   constructor(public navCtrl: NavController,
     public angFire: AngularFire,
@@ -37,7 +26,8 @@ export class MyListPage {
     this.myListForm = formBuilder.group({
       name: ['', Validators.compose([Validators.required])]
     });
-    this.dataService = completerService.local(this.searchData, 'item', 'item');
+
+    this.dataService = completerService.local(angFire.database.list('/Lookup/Items'), 'name','name');
   }
 
   createItem() {

@@ -32,7 +32,7 @@ export const config = {
     ItemCreateComponent
   ],
   imports: [
-    IonicModule.forRoot(MyApp, { tabsPlacement: 'top' }),
+    IonicModule.forRoot(MyApp, { tabsPlacement: 'bottom' }),
     AngularFireModule.initializeApp(config),
     Ng2CompleterModule
   ],

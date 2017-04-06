@@ -13,6 +13,7 @@ export class TabsPage {
   tab1Root: any = HomePage;
   tab2Root: any = MyListPage;
   tab3Root: any = HistoryPage;
+  tab4Root: any = HistoryPage;
   constructor() {
 
   }

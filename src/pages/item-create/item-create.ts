@@ -8,7 +8,6 @@ import * as _ from 'lodash';
   templateUrl: 'item-create.html'
 })
 export class ItemCreateComponent {
-  // public item: any = { 'comments': '' };
   public selectedItems: any;
   mylist: FirebaseListObservable<any>;
   public itemExists: boolean;
