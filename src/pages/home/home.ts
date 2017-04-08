@@ -21,7 +21,7 @@ export class HomePage {
   constructor(public navCtrl: NavController,
     public angFire: AngularFire,
     public modalCtrl: ModalController,
-    public toastCtrl: ToastController, ) {
+    public toastCtrl: ToastController) {
     this.today = new Date();
     this.items = angFire.database.list('/Items', {
       query: {

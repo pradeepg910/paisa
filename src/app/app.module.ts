@@ -5,8 +5,9 @@ import { HomePage } from '../pages/home/home';
 import { MyListPage } from '../pages/mylist/mylist';
 import { TabsPage } from '../pages/tabs/tabs';
 import {HistoryPage} from '../pages/history/history'
-
+import { LoginPage } from '../pages/login/login';
 import {ItemCreateComponent} from '../pages/item-create/item-create';
+import {RegistrationPage} from '../pages/register/register';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -29,7 +30,9 @@ export const config = {
     TabsPage,
     MyListPage,
     HistoryPage,
-    ItemCreateComponent
+    LoginPage,
+    ItemCreateComponent,
+    RegistrationPage
   ],
   imports: [
     IonicModule.forRoot(MyApp, { tabsPlacement: 'bottom' }),
@@ -43,7 +46,9 @@ export const config = {
     TabsPage,
     MyListPage,
     HistoryPage,
-    ItemCreateComponent
+    LoginPage,
+    ItemCreateComponent,
+    RegistrationPage
   ],
   providers: [
     StatusBar,

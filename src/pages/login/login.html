@@ -1,0 +1,16 @@
+<ion-content padding>
+  <form [formGroup]="loginForm">
+    <ion-list inset>
+      <ion-item>
+        <ion-label floating>Username</ion-label>
+        <ion-input text-lowercase	#username ngControl="username" formControlName="username" type="text" [class.invalid]="!loginForm.controls.username.valid" autofocus></ion-input>
+      </ion-item>
+      
+          <button ion-button (click)="login()" [disabled]="(!loginForm.valid)" color="dark">Login</button>
+
+          <button ion-button (click)="register()"  color="dark">Register</button>
+
+
+    </ion-list>
+  </form>
+</ion-content>
