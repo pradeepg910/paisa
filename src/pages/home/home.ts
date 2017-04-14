@@ -1,14 +1,16 @@
 import { Component } from '@angular/core';
 
-import { NavController, ModalController, ToastController } from 'ionic-angular';
+import { NavController, ModalController, ToastController, NavParams } from 'ionic-angular';
 import {AngularFire, FirebaseListObservable} from 'angularfire2';
 
 import {ItemCreateComponent} from '../item-create/item-create';
 import * as _ from 'lodash';
+import { Storage } from '@ionic/storage';
+import {UserService} from '../user/UserService';
 
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
 })
 export class HomePage {
 
@@ -17,22 +19,37 @@ export class HomePage {
   today: any;
   lastMonthTotal: any;
   greetMsg: string;
+  user: any;
 
   constructor(public navCtrl: NavController,
     public angFire: AngularFire,
     public modalCtrl: ModalController,
-    public toastCtrl: ToastController) {
+    public toastCtrl: ToastController,
+    public storage: Storage,
+    private navParams: NavParams,
+    private userService: UserService) {
+
     this.today = new Date();
-    this.items = angFire.database.list('/Items', {
-      query: {
-        orderByChild: 'monthYear',
-        equalTo: this.today.getMonth() + '-' + this.today.getFullYear()
-      }
-    });
-    this.calculateMonthlyTotal();
-    this.calculateLastMonthTotal();
-    this.greetMsg = this.greetMessage();
-  }
+    this.user = userService.getUser();
+
+
+    // this.storage.get('user').then((user) => {
+      var path = '/Items/' + this.user.key + '/';
+      console.log(path);
+      this.items = angFire.database.list(path, {
+        query: {
+          orderByChild: 'monthYear',
+          equalTo: this.today.getMonth() + '-' + this.today.getFullYear()
+        }
+      });
+      this.calculateMonthlyTotal();
+      this.calculateLastMonthTotal();
+      this.greetMsg = this.greetMessage();
+    //});
+
+
+
+    }
 
   calculateMonthlyTotal() {
     this.items.subscribe((items) => {
@@ -73,7 +90,7 @@ export class HomePage {
           title: item.title,
           amount: +item.amount,
           description: this.getDescriptionConditionally(item),
-          descShort: _.truncate(item.description, { 'length': 30 }),
+          descShort: _.truncate(item.description, { 'length': 15 }),
           timestamp: item.timestamp,
           monthYear: item.monthYear
         });

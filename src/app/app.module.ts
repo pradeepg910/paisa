@@ -11,9 +11,11 @@ import {RegistrationPage} from '../pages/register/register';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import {UserService} from '../pages/user/UserService';
 
 import {AngularFireModule} from 'angularfire2';
 import { Ng2CompleterModule } from "ng2-completer";
+import { IonicStorageModule } from '@ionic/storage';
 
 export const config = {
   apiKey: "AIzaSyCTDcKz5CgF29cxUkeyPrb9I-cxMiyOYVY",
@@ -37,7 +39,8 @@ export const config = {
   imports: [
     IonicModule.forRoot(MyApp, { tabsPlacement: 'bottom' }),
     AngularFireModule.initializeApp(config),
-    Ng2CompleterModule
+    Ng2CompleterModule,
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -53,6 +56,7 @@ export const config = {
   providers: [
     StatusBar,
     SplashScreen,
+    UserService,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
