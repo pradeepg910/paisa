@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
-import { NavController, ModalController, ToastController } from 'ionic-angular';
-import {AngularFire, FirebaseListObservable} from 'angularfire2';
+import { NavController} from 'ionic-angular';
+import {AngularFire} from 'angularfire2';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { TabsPage } from '../tabs/tabs';
 import { RegistrationPage } from '../register/register';
@@ -41,7 +41,6 @@ export class LoginPage {
         let userObj = _.clone(user);
         userObj.key = user.$key;
         this.storage.set('user', userObj);
-        console.log(userObj);
         this.userService.setUser(userObj);
         this.navCtrl.push(TabsPage);
       } else {

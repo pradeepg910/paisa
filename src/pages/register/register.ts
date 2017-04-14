@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { ViewController, NavController } from 'ionic-angular';
-import {AngularFire, FirebaseListObservable} from 'angularfire2';
+import { NavController } from 'ionic-angular';
+import {AngularFire} from 'angularfire2';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import * as _ from 'lodash';
 import { LoginPage } from '../login/login';
 import { TabsPage } from '../tabs/tabs';
 
@@ -12,8 +11,7 @@ import { TabsPage } from '../tabs/tabs';
 export class RegistrationPage {
   registerForm: FormGroup;
 
-  constructor(public viewCtrl: ViewController,
-              public navCtrl: NavController,
+  constructor(public navCtrl: NavController,
               public angFire: AngularFire,
               private formBuilder: FormBuilder) {
     this.registerForm = formBuilder.group({

@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
-import { NavController, ModalController, ToastController, NavParams } from 'ionic-angular';
+import {ModalController, ToastController} from 'ionic-angular';
 import {AngularFire, FirebaseListObservable} from 'angularfire2';
 
 import {ItemCreateComponent} from '../item-create/item-create';
@@ -14,45 +14,35 @@ import {UserService} from '../user/UserService';
 })
 export class HomePage {
 
-  items: FirebaseListObservable<any>;
-  currentTotal: number;
-  today: any;
-  lastMonthTotal: any;
-  greetMsg: string;
-  user: any;
+  items:FirebaseListObservable<any>;
+  currentTotal:number;
+  today:any;
+  lastMonthTotal:any;
+  greetMsg:string;
+  user:any;
 
-  constructor(public navCtrl: NavController,
-    public angFire: AngularFire,
-    public modalCtrl: ModalController,
-    public toastCtrl: ToastController,
-    private navParams: NavParams,
-    private userService: UserService) {
+  constructor(public angFire:AngularFire,
+              public modalCtrl:ModalController,
+              public toastCtrl:ToastController,
+              private userService:UserService) {
 
     this.today = new Date();
     this.user = userService.getUser();
+    this.items = angFire.database.list('/Items/' + this.user.key, {
+      query: {
+        orderByChild: 'monthYear',
+        equalTo: this.today.getMonth() + '-' + this.today.getFullYear()
+      }
+    });
+    this.calculateMonthlyTotal();
+    this.calculateLastMonthTotal();
+    this.greetMsg = this.greetMessage();
 
-
-    // this.storage.get('user').then((user) => {
-      var path = '/Items/' + this.user.key + '/';
-      console.log(path);
-      this.items = angFire.database.list(path, {
-        query: {
-          orderByChild: 'monthYear',
-          equalTo: this.today.getMonth() + '-' + this.today.getFullYear()
-        }
-      });
-      this.calculateMonthlyTotal();
-      this.calculateLastMonthTotal();
-      this.greetMsg = this.greetMessage();
-    //});
-
-
-
-    }
+  }
 
   calculateMonthlyTotal() {
     this.items.subscribe((items) => {
-      let _list: Array<any> = new Array();
+      let _list:Array<any> = new Array();
       items.forEach((item) => {
         _list.push(item);
       });
@@ -69,18 +59,19 @@ export class HomePage {
         equalTo: date.getMonth() + '-' + date.getFullYear()
       }
     }).subscribe((items) => {
-      let _list: Array<any> = new Array();
+      let _list:Array<any> = new Array();
       items.forEach((item) => {
         _list.push(item);
       });
       this.lastMonthTotal = _.sum(_.map(_list, 'amount'));
-    });;
+    });
+    ;
   }
 
   createItem() {
     let modalPage = this.modalCtrl.create(ItemCreateComponent);
     modalPage.present();
-    modalPage.onDidDismiss((obj: any) => {
+    modalPage.onDidDismiss((obj:any) => {
       if (obj) {
         let item = obj.item;
         item.timestamp = this.today.toISOString();
@@ -89,7 +80,7 @@ export class HomePage {
           title: item.title,
           amount: +item.amount,
           description: this.getDescriptionConditionally(item),
-          descShort: _.truncate(item.description, { 'length': 15 }),
+          descShort: _.truncate(item.description, {'length': 15}),
           timestamp: item.timestamp,
           monthYear: item.monthYear
         });
@@ -110,6 +101,7 @@ export class HomePage {
     }
     return item.description;
   }
+
   delete(item) {
     this.items.remove(item.$key);
   }
