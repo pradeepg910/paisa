@@ -1,27 +1,23 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      <ion-row>
-        <ion-col width-100 class="title">
-          <ion-title class="title">Login</ion-title>
-        </ion-col>
-      </ion-row>
-    </ion-title>
+          <ion-title class="title">Paisa</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <form [formGroup]="loginForm">
+    <br>
+    <br>
+    <br>
     <ion-list inset>
       <div class="error">
         {{errorMsg}}
       </div>
       <ion-item>
-        <ion-label floating>Username</ion-label>
-        <ion-input text-lowercase #username ngControl="username" formControlName="username" type="text" autofocus></ion-input>
+        <ion-input placeholder ="Username" text-lowercase #username ngControl="username" formControlName="username" type="text" autofocus></ion-input>
       </ion-item>
-      <button ion-button (click)="login()" [disabled]="(!loginForm.valid)" color="dark">Login</button>
-      <button ion-button (click)="register()" color="dark">Register</button>
+      <button ion-button block (click)="login()" [disabled]="(!loginForm.valid)" color="dark">Login</button>
+      <button ion-button block (click)="register()" color="dark">Register</button>
     </ion-list>
   </form>
 </ion-content>
