@@ -6,6 +6,7 @@ import { MyListPage } from '../pages/mylist/mylist';
 import { TabsPage } from '../pages/tabs/tabs';
 import {HistoryPage} from '../pages/history/history'
 import { LoginPage } from '../pages/login/login';
+import { LogoutPage } from '../pages/logout/logout';
 import {ItemCreateComponent} from '../pages/item-create/item-create';
 import {RegistrationPage} from '../pages/register/register';
 
@@ -34,7 +35,8 @@ export const config = {
     HistoryPage,
     LoginPage,
     ItemCreateComponent,
-    RegistrationPage
+    RegistrationPage,
+    LogoutPage
   ],
   imports: [
     IonicModule.forRoot(MyApp, { tabsPlacement: 'bottom' }),
@@ -51,7 +53,8 @@ export const config = {
     HistoryPage,
     LoginPage,
     ItemCreateComponent,
-    RegistrationPage
+    RegistrationPage,
+    LogoutPage
   ],
   providers: [
     StatusBar,
