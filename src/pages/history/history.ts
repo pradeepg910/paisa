@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
-import { NavController, ModalController, ToastController } from 'ionic-angular';
+import {NavController, ModalController, ToastController} from 'ionic-angular';
 import {AngularFire, FirebaseListObservable} from 'angularfire2';
 import * as _ from 'lodash';
+import {UserService} from '../user/UserService';
 
 @Component({
   selector: 'page-history',
@@ -10,19 +11,19 @@ import * as _ from 'lodash';
 })
 export class HistoryPage {
 
-  items: any = [];
-  filteredItems: any = [];
-  monthYearsMap: any = [];
-  item: any = {};
-  today: any;
+  items:any = [];
+  filteredItems:any = [];
+  monthYearsMap:any = [];
+  item:any = {};
+  today:any;
+  user:any;
 
-  constructor(public navCtrl: NavController,
-    public angFire: AngularFire,
-    public modalCtrl: ModalController,
-    public toastCtrl: ToastController, ) {
+  constructor(public navCtrl:NavController,
+              public angFire:AngularFire,
+              private userService:UserService) {
     this.today = new Date();
-    angFire.database.list('/Items').subscribe((_items) => {
-      this.items = new Array();
+    this.user = userService.getUser();
+    angFire.database.list('/Items/' + this.user.key).subscribe((_items) => {
       _items.forEach((item) => {
         if (!_.isEqual(item.monthYear, this.today.getMonth() + '-' + this.today.getFullYear())) {
           this.items.push(item);
@@ -33,20 +34,19 @@ export class HistoryPage {
   }
 
   monthYearChanged(selectedMY) {
-    console.log(selectedMY);
-    this.filteredItems = _.filter(this.items, { "monthYear": selectedMY });
+    this.filteredItems = _.filter(this.items, {"monthYear": selectedMY});
   }
 
   createMonthYearMap() {
     let monthYearsValues = this.uniqueMonthYears();
-    for (var i = 0, len = monthYearsValues.length; i < len; i++) {
-      let value = monthYearsValues[i];
+    _.forEach(monthYearsValues, value => {
+      console.log('debugggg', value);
       let monthYearArray = _.split(value, '-', 2);
       let date = new Date();
       date.setMonth(monthYearArray[0]);
       date.setFullYear(monthYearArray[1]);
-      this.monthYearsMap.push({ "date": date, "value": value });
-    }
+      this.monthYearsMap.push({"date": date, "value": value});
+    });
   }
 
   uniqueMonthYears() {

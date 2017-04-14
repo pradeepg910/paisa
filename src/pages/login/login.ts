@@ -37,7 +37,7 @@ export class LoginPage {
       }
     }).subscribe((users) => {
       let user = _.head(users);
-      if (user) {
+      if (!_.isNil(user)) {
         let userObj = _.clone(user);
         userObj.key = user.$key;
         this.storage.set('user', userObj);

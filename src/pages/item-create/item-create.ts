@@ -3,6 +3,7 @@ import { ViewController } from 'ionic-angular';
 import {AngularFire, FirebaseListObservable} from 'angularfire2';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as _ from 'lodash';
+import {UserService} from '../user/UserService';
 
 @Component({
   templateUrl: 'item-create.html'
@@ -14,9 +15,10 @@ export class ItemCreateComponent {
   newExpenseForm: FormGroup;
 
   constructor(public viewCtrl: ViewController,
-    public angFire: AngularFire,
-    private formBuilder: FormBuilder) {
-    this.mylist = angFire.database.list('/MyList');
+              public angFire: AngularFire,
+              private formBuilder: FormBuilder,
+              private userService:UserService) {
+    this.mylist = angFire.database.list('/MyList/'+userService.getUser().key);
     this.mylist.subscribe(items => this.itemExists = items.length > 0);
     this.newExpenseForm = formBuilder.group({
       title: ['', Validators.compose([Validators.required])],

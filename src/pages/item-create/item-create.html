@@ -1,31 +1,3 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      <ion-row>
-        <ion-col width-25>
-          <ion-buttons left>
-            <button ion-button (click)="cancelCreateExpense()">
-              <ion-icon name="arrow-back"></ion-icon>
-            </button>
-          </ion-buttons>
-        </ion-col>
-        <ion-col width-50 class="title">
-          <ion-title class="title">New Expense</ion-title>
-        </ion-col>
-        <ion-col width-25>
-          <ion-buttons end>
-            <button ion-button (click)="createExpense()" [disabled]="(!newExpenseForm.valid)">
-        <ion-icon name="checkmark"></ion-icon>
-      </button>
-          </ion-buttons>
-        </ion-col>
-
-      </ion-row>
-    </ion-title>
-
-  </ion-navbar>
-</ion-header>
-
 
 <ion-content padding>
   <form [formGroup]="newExpenseForm">
@@ -48,6 +20,9 @@
         <ion-textarea placeholder="Comments" #comments ngControl="comments" formControlName="comments"></ion-textarea>
       </ion-item>
       <!-- <button ion-button type="submit" color="dark" block>Add</button> -->
+
+      <button ion-button block (click)="createExpense()" [disabled]="(!newExpenseForm.valid)" color="dark">Save</button>
+      <button ion-button block (click)="cancelCreateExpense()" color="dark">Cancel</button>
     </ion-list>
   </form>
 </ion-content>
