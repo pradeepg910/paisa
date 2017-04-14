@@ -5,7 +5,7 @@ import {AngularFire, FirebaseListObservable} from 'angularfire2';
 
 import {ItemCreateComponent} from '../item-create/item-create';
 import * as _ from 'lodash';
-import { Storage } from '@ionic/storage';
+
 import {UserService} from '../user/UserService';
 
 @Component({
@@ -25,7 +25,6 @@ export class HomePage {
     public angFire: AngularFire,
     public modalCtrl: ModalController,
     public toastCtrl: ToastController,
-    public storage: Storage,
     private navParams: NavParams,
     private userService: UserService) {
 
