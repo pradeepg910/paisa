@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 
-import {NavController} from 'ionic-angular';
+import {NavController, App} from 'ionic-angular';
 import {AngularFire} from 'angularfire2';
 import {Storage} from '@ionic/storage';
 import {UserService} from '../user/UserService';
@@ -14,10 +14,12 @@ export class LogoutPage {
   constructor(private navCtrl: NavController,
               public angFire:AngularFire,
               public storage:Storage,
-              private userService:UserService) {
+              private userService:UserService,
+              public app: App) {
     storage.set('user', null);
     userService.setUser(null);
-    //app.rootPage = LoginPage;
+    console.log(this.app);
+    this.app.getRootNav().setRoot(LoginPage);
   }
 
 }

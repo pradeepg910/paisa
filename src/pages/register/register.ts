@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { ToastController, NavController } from 'ionic-angular';
 import {AngularFire} from 'angularfire2';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginPage } from '../login/login';
@@ -13,6 +13,7 @@ export class RegistrationPage {
 
   constructor(public navCtrl: NavController,
               public angFire: AngularFire,
+              public toastCtrl:ToastController,
               private formBuilder: FormBuilder) {
     this.registerForm = formBuilder.group({
       email: ['', Validators.compose([Validators.required])],
@@ -34,7 +35,13 @@ export class RegistrationPage {
       user.name = form.value.name;
       user.timestamp = new Date().toISOString();
       this.angFire.database.list('/Users').push(user);
-      this.navCtrl.push(TabsPage);
+      this.navCtrl.push(LoginPage);
+      let toast = this.toastCtrl.create({
+        message: 'Registered successfully',
+        duration: 2000,
+        position: 'top'
+      });
+      toast.present();
     }
   }
 
