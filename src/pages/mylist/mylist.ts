@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
-import { NavController, ModalController, ToastController } from 'ionic-angular';
+import {NavController, ModalController, ToastController} from 'ionic-angular';
 import {AngularFire, FirebaseListObservable} from 'angularfire2';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { CompleterService, CompleterData } from 'ng2-completer';
+import {CompleterService, CompleterData} from 'ng2-completer';
 import {UserService} from '../user/UserService';
+import {LogoutPage} from '../logout/logout';
 
 @Component({
   selector: 'page-mylist',
@@ -12,26 +13,27 @@ import {UserService} from '../user/UserService';
 })
 export class MyListPage {
 
-  items: FirebaseListObservable<any>;
-  currentTotal: number;
-  myListForm: FormGroup;
-  dataService: CompleterData;
-  user: any;
+  items:FirebaseListObservable<any>;
+  currentTotal:number;
+  myListForm:FormGroup;
+  dataService:CompleterData;
+  user:any;
 
-  constructor(public navCtrl: NavController,
-    public angFire: AngularFire,
-    public modalCtrl: ModalController,
-    public toastCtrl: ToastController,
-    private formBuilder: FormBuilder,
-    private completerService: CompleterService,
-    private userService:UserService) {
+  constructor(public navCtrl:NavController,
+              public angFire:AngularFire,
+              public modalCtrl:ModalController,
+              public toastCtrl:ToastController,
+              private formBuilder:FormBuilder,
+              private completerService:CompleterService,
+              private userService:UserService,
+              private logoutService:LogoutPage) {
     this.user = userService.getUser();
-    this.items = angFire.database.list('/MyList/'+this.user.key);
+    this.items = angFire.database.list('/MyList/' + this.user.key);
     this.myListForm = formBuilder.group({
       name: ['', Validators.compose([Validators.required])]
     });
 
-    this.dataService = completerService.local(angFire.database.list('/Lookup/Items'), 'name','name');
+    this.dataService = completerService.local(angFire.database.list('/Lookup/Items'), 'name', 'name');
   }
 
   createItem() {
@@ -64,4 +66,7 @@ export class MyListPage {
     toast.present();
   }
 
+  logout() {
+    this.logoutService.logout();
+  }
 }

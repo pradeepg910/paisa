@@ -4,6 +4,7 @@ import {NavController, ModalController, ToastController} from 'ionic-angular';
 import {AngularFire, FirebaseListObservable} from 'angularfire2';
 import * as _ from 'lodash';
 import {UserService} from '../user/UserService';
+import {LogoutPage} from '../logout/logout';
 
 @Component({
   selector: 'page-history',
@@ -20,7 +21,8 @@ export class HistoryPage {
 
   constructor(public navCtrl:NavController,
               public angFire:AngularFire,
-              private userService:UserService) {
+              private userService:UserService,
+              private logoutService: LogoutPage) {
     this.today = new Date();
     this.user = userService.getUser();
     angFire.database.list('/Items/' + this.user.key).subscribe((_items) => {
@@ -51,6 +53,10 @@ export class HistoryPage {
 
   uniqueMonthYears() {
     return _.sortedUniq(_.map(this.items, "monthYear"));
+  }
+
+  logout() {
+    this.logoutService.logout();
   }
 
 }

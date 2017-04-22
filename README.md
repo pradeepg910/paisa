@@ -17,7 +17,7 @@ Build Apk:
 cd /c/Program\ Files/Java/jdk1.8.0_05/bin/
 ./jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore /d/Pradeep/app/paisa-key.keystore /d/Pradeep/app/paisa.apk paisa
 cd /c/Users/Pradeep/AppData/Local/Android/sdk/build-tools/25.0.2
-./zipalign -v 4 /d/Pradeep/app/paisa.apk /d/Pradeep/app/paisa-key-prod.
+./zipalign -v 4 /d/Pradeep/app/paisa.apk /d/Pradeep/app/paisa-key-prod.apk
 
 
 issues:

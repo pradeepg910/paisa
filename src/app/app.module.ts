@@ -35,8 +35,7 @@ export const config = {
     HistoryPage,
     LoginPage,
     ItemCreateComponent,
-    RegistrationPage,
-    LogoutPage
+    RegistrationPage
   ],
   imports: [
     IonicModule.forRoot(MyApp, { tabsPlacement: 'bottom' }),
@@ -54,12 +53,13 @@ export const config = {
     LoginPage,
     ItemCreateComponent,
     RegistrationPage,
-    LogoutPage
+
   ],
   providers: [
     StatusBar,
     SplashScreen,
     UserService,
+    LogoutPage,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })

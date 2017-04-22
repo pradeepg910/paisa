@@ -2,9 +2,9 @@ import {Component} from '@angular/core';
 
 import {ModalController, ToastController} from 'ionic-angular';
 import {AngularFire, FirebaseListObservable} from 'angularfire2';
-
 import {ItemCreateComponent} from '../item-create/item-create';
 import * as _ from 'lodash';
+import {LogoutPage} from '../logout/logout';
 
 import {UserService} from '../user/UserService';
 
@@ -24,7 +24,8 @@ export class HomePage {
   constructor(public angFire:AngularFire,
               public modalCtrl:ModalController,
               public toastCtrl:ToastController,
-              private userService:UserService) {
+              private userService:UserService,
+              private logoutService: LogoutPage) {
 
     this.today = new Date();
     this.user = userService.getUser();
@@ -118,4 +119,7 @@ export class HomePage {
     return greet;
   }
 
+  logout() {
+    this.logoutService.logout();
+  }
 }
