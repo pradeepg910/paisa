@@ -7,11 +7,13 @@
     <br>
     <br>
     <br>
+    <!--<h5>Sign-in to see the Expense Details</h5>-->
     <ion-list inset>
       <div class="error">
         {{errorMsg}}
       </div>
       <ion-item>
+        <ion-icon name="person" item-left></ion-icon>
         <ion-input placeholder ="Username" text-lowercase #username ngControl="username" formControlName="username" type="text" autofocus></ion-input>
       </ion-item>
       <button ion-button block (click)="login()" [disabled]="(!loginForm.valid)" color="dark">Login</button>

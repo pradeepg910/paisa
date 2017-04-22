@@ -12,24 +12,47 @@
 
 
 <ion-content padding>
+
+
   <form [formGroup]="registerForm">
+    <ion-list>
+      <p class="error" *ngIf="!registerForm.controls.username.valid  && registerForm.controls.username.dirty">
+        <ion-icon name="close-circle" item-left></ion-icon>
+        Username must be between 6-20 characters in length
+      </p>
+      <p class="error" *ngIf="!registerForm.controls.name.valid  && registerForm.controls.name.dirty">
+        <ion-icon name="close-circle" item-left></ion-icon>
+        Name is required and cannot be empty
+      </p>
+      <p class="error" *ngIf="!registerForm.controls.email.valid  && registerForm.controls.email.dirty">
+        <ion-icon name="close-circle" item-left></ion-icon>
+        Email address is not valid
+      </p>
+    </ion-list>
     <ion-list inset>
       <ion-item>
+        <ion-icon name="person" item-left></ion-icon>
         <ion-label floating>Username</ion-label>
-        <ion-input text-lowercase	 #username ngControl="username" formControlName="username" type="text" [class.invalid]="!registerForm.controls.username.valid" autofocus></ion-input>
+        <ion-input text-lowercase #username ngControl="username" formControlName="username" type="text"
+                   [class.invalid]="!registerForm.controls.username.valid" autofocus></ion-input>
       </ion-item>
       <ion-item>
+        <ion-icon name="contact" item-left></ion-icon>
         <ion-label floating>Name</ion-label>
-        <ion-input #name ngControl="name" formControlName="name" type="text" [class.invalid]="!registerForm.controls.name.valid"></ion-input>
+        <ion-input #name ngControl="name" formControlName="name" type="text"
+                   [class.invalid]="!registerForm.controls.name.valid"></ion-input>
       </ion-item>
       <ion-item>
+        <ion-icon name="mail" item-left></ion-icon>
         <ion-label floating>Email</ion-label>
-        <ion-input #email ngControl="email" formControlName="email" type="text" [class.invalid]="!registerForm.controls.email.valid"></ion-input>
+        <ion-input class="form-control" #email ngControl="email" formControlName="email" type="text"
+                   [class.invalid]="!registerForm.controls.email.valid"></ion-input>
+        <p *ngIf="registerForm.controls.email.valid">Invalid email</p>
       </ion-item>
 
-      <button ion-button (click)="register()" [disabled]="(!registerForm.valid)" color="dark">
+      <button ion-button block (click)="register()" [disabled]="(!registerForm.valid)" color="dark">
         Register
-        </button>
+      </button>
     </ion-list>
   </form>
 </ion-content>
