@@ -2,7 +2,7 @@
 
 echo "Building Ionic android release apk "
 
-ionic build android --release
+ionic build android --prod --release
 
 echo "Copying to apk to /d/Pradeep/app/"
 

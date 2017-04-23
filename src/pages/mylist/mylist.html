@@ -20,7 +20,7 @@
         <!-- <ion-input #name ngControl="name" formControlName="name" type="text" [class.invalid]="!myListForm.controls.name.valid"></ion-input> -->
       </ion-col>
       <ion-col width-10>
-        <button ion-button icon-only (click)="createItem()" [disabled]="(!myListForm.valid)">
+        <button ion-button icon-only (tap)="createItem()" [disabled]="(!myListForm.valid)">
         <ion-icon name="add" ></ion-icon>
       </button>
       </ion-col>

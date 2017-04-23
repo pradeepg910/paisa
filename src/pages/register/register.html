@@ -50,7 +50,7 @@
         <p *ngIf="registerForm.controls.email.valid">Invalid email</p>
       </ion-item>
 
-      <button ion-button block (click)="register()" [disabled]="(!registerForm.valid)" color="dark">
+      <button ion-button block (tap)="register()" [disabled]="(!registerForm.valid)" color="dark">
         Register
       </button>
     </ion-list>

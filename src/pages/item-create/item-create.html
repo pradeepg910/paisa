@@ -21,8 +21,8 @@
       </ion-item>
       <!-- <button ion-button type="submit" color="dark" block>Add</button> -->
 
-      <button ion-button block (click)="createExpense()" [disabled]="(!newExpenseForm.valid)" color="dark">Save</button>
-      <button ion-button block (click)="cancelCreateExpense()" color="dark">Cancel</button>
+      <button ion-button block (tap)="createExpense()" [disabled]="(!newExpenseForm.valid)" color="dark">Save</button>
+      <button ion-button block (tap)="cancelCreateExpense()" color="dark">Cancel</button>
     </ion-list>
   </form>
 </ion-content>

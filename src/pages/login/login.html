@@ -16,8 +16,8 @@
         <ion-icon name="person" item-left></ion-icon>
         <ion-input placeholder ="Username" text-lowercase #username ngControl="username" formControlName="username" type="text" autofocus></ion-input>
       </ion-item>
-      <button ion-button block (click)="login()" [disabled]="(!loginForm.valid)" color="dark">Login</button>
-      <button ion-button block (click)="register()" color="dark">Register</button>
+      <button ion-button block (tap)="login()" [disabled]="(!loginForm.valid)" color="dark">Login</button>
+      <button ion-button block (tap)="register()" color="dark">Register</button>
     </ion-list>
   </form>
 </ion-content>
