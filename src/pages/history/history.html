@@ -12,30 +12,11 @@
 </ion-header>
 
 <ion-content padding>
-  <!--<ion-row>-->
-    <!--<ion-col width-20>-->
-      <!--<ion-label>Select </ion-label>-->
-    <!--</ion-col>-->
-    <!--<ion-col width-80>-->
-      <!--<ion-select class="monthYear" [(ngModel)]="selectedMonthYear" name="selectedMonthYear" (ionChange)="monthYearChanged($event, selectedMonthYear)">-->
-        <!--<ion-option *ngFor="let monthYear of monthYearsMap" [value]="monthYear.value">-->
-          <!--{{ monthYear.date | date:'MMMM' }} - {{ monthYear.date | date:'y' }}-->
-        <!--</ion-option>-->
-      <!--</ion-select>-->
-    <!--</ion-col>-->
-  <!--</ion-row>-->
-  <!--<ion-list>-->
-    <!--<ion-item *ngFor="let item of filteredItems">-->
-      <!--<p>{{ item.title }}</p>-->
-      <!--<p>{{ item.monthYear }}</p>-->
-    <!--</ion-item>-->
-  <!--</ion-list>-->
-
   <ion-list>
       <ion-item>
       <ion-label>Date</ion-label>
       <ion-select [(ngModel)]="selectedYear" name="selectedYear" (ionChange)="yearChanged(selectedYear)">
-        <ion-option *ngFor="let year of years" value="{{year.value}}" >
+        <ion-option *ngFor="let year of years" value="{{year.value}}">
           {{ year.name }}
         </ion-option>
       </ion-select>
@@ -48,10 +29,22 @@
     </ion-list>
 
     <ion-list>
-      <ion-item *ngFor="let item of filteredItems">
-      <p>{{ item.title }}</p>
-      <p>{{ item.monthYear }}</p>
+        <ion-item class="item" text-wrap *ngFor="let item of filteredItems">
+        <ion-grid>
+          <ion-row text-wrap class="row">
+            <ion-col width-50 class="expenseTitle">
+              <ion-icon name="cart" item-left></ion-icon>
+              {{ item.title }}
+            </ion-col>
+            <ion-col text-wrap width-50 class="expenseDay">
+              {{ item.timestamp | date:'EEE'}}
+            </ion-col>
+            <ion-col width-50>{{ item.descShort }}</ion-col>
+            <ion-col width-50 class="amount">${{item.amount}}</ion-col>
+          </ion-row>
+        </ion-grid>
       </ion-item>
+
     </ion-list>
 
     </ion-content>

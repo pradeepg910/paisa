@@ -9,4 +9,43 @@ page-history {
   .col{
     padding: 0px;
   }
+
+  .total {
+    color:#a7050a;
+    text-align: right;
+    font-weight: 700;
+  }
+  .appName {
+    text-align: center;
+    vertical-align: bottom;
+  }
+  .row {
+    line-height: 5px;
+    padding-top: 5px;
+    min-height: 0px;
+  }
+  .amount {
+    text-align: right;
+    vertical-align: middle;
+    font-weight: 700;
+  }
+  .expenseTitle {
+    text-align: left;
+    font-weight: 700;
+  }
+
+  .expenseDay {
+    text-align: right;
+  }
+
+  .expenseDesc {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .expenseDetails {
+    padding-bottom: 15px;
+  }
+
 }
