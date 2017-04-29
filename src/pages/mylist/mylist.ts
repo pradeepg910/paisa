@@ -60,8 +60,8 @@ export class MyListPage {
   showToast() {
     let toast = this.toastCtrl.create({
       message: 'Item created',
-      duration: 2000,
-      position: 'top'
+      duration: 1500,
+      position: 'bottom'
     });
     toast.present();
   }

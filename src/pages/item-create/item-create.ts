@@ -14,6 +14,8 @@ export class ItemCreateComponent {
   public categories: FirebaseListObservable<any>;
   public itemExists: boolean;
   newExpenseForm: FormGroup;
+  public date: any;
+  public iconMap = new Map<string, string>();
 
   constructor(public viewCtrl: ViewController,
               public angFire: AngularFire,
@@ -27,8 +29,11 @@ export class ItemCreateComponent {
       amount: ['', Validators.compose([Validators.required])],
       selectedItems: [],
       category: [],
-      comments: ['']
+      comments: [''],
+      date: [new Date().toDateString()]
     });
+    this.date = new Date().toISOString();
+    this.iconLookup();
   }
 
   cancelCreateExpense() {
@@ -44,11 +49,30 @@ export class ItemCreateComponent {
       item.description = this.joinSelectedItems();
       item.comments = form.value.comments;
       item.category = form.value.category;
+      item.timestamp = this.date;
+      item.category_icon = this.icon(item.category);
       this.removeSelectedItemFromMyList();
       this.viewCtrl.dismiss({ item: item });
     }
   }
 
+  iconLookup() {
+    this.iconMap.set("Grocery", "cart");
+    this.iconMap.set("Food", "restaurant");
+    this.iconMap.set("Clothes", "shirt");
+    this.iconMap.set("Travel", "plane");
+    this.iconMap.set("Entertainment", "film");
+    this.iconMap.set("Gas", "car");
+    this.iconMap.set("Others", "list-box");
+  }
+
+  icon(category) {
+    if(category) {
+      return this.iconMap.get(category);
+    } else {
+      return "cart";
+    }
+  }
   removeSelectedItemFromMyList() {
     this.mylist.subscribe((items) => {
       items.forEach((item) => {

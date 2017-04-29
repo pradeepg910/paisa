@@ -23,6 +23,10 @@
         </ion-select>
       </ion-item>
       <ion-item>
+        <ion-label>Date</ion-label>
+        <ion-datetime displayFormat="DDDD MMM D,YYYY" pickerFormat="MMM D YYYY" [ngModelOptions]="{standalone: true}" [(ngModel)]="date"></ion-datetime>
+      </ion-item>
+      <ion-item>
         <ion-textarea placeholder="Comments" #comments ngControl="comments" formControlName="comments"></ion-textarea>
       </ion-item>
       <!-- <button ion-button type="submit" color="dark" block>Add</button> -->

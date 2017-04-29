@@ -75,9 +75,9 @@ export class HomePage {
     modalPage.onDidDismiss((obj:any) => {
       if (obj) {
         let item = obj.item;
-        item.timestamp = this.today.toISOString();
         item.monthYear = this.today.getMonth() + "-" + this.today.getFullYear();
         let conditionalDesc = this.getDescriptionConditionally(item);
+        console.log('timestamp', item.timestamp);
         this.items.push({
           title: item.title,
           amount: +item.amount,
@@ -85,13 +85,13 @@ export class HomePage {
           descShort: _.truncate(conditionalDesc, {'length': 15}),
           category: item.category,
           timestamp: item.timestamp,
-          monthYear: item.monthYear
+          monthYear: item.monthYear,
+          category_icon: item.category_icon
         });
-        //self.scrollToBottom();
         let toast = this.toastCtrl.create({
           message: 'Expense created',
-          duration: 2000,
-          position: 'top'
+          duration: 1500,
+          position: 'bottom'
         });
         toast.present();
       }
