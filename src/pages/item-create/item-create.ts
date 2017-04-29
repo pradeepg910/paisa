@@ -10,7 +10,8 @@ import {UserService} from '../user/UserService';
 })
 export class ItemCreateComponent {
   public selectedItems: any;
-  mylist: FirebaseListObservable<any>;
+  public mylist: FirebaseListObservable<any>;
+  public categories: FirebaseListObservable<any>;
   public itemExists: boolean;
   newExpenseForm: FormGroup;
 
@@ -20,10 +21,12 @@ export class ItemCreateComponent {
               private userService:UserService) {
     this.mylist = angFire.database.list('/MyList/'+userService.getUser().key);
     this.mylist.subscribe(items => this.itemExists = items.length > 0);
+    this.categories = angFire.database.list('/Categories');
     this.newExpenseForm = formBuilder.group({
       title: ['', Validators.compose([Validators.required])],
       amount: ['', Validators.compose([Validators.required])],
       selectedItems: [],
+      category: [],
       comments: ['']
     });
   }
@@ -40,6 +43,7 @@ export class ItemCreateComponent {
       item.amount = form.value.amount;
       item.description = this.joinSelectedItems();
       item.comments = form.value.comments;
+      item.category = form.value.category;
       this.removeSelectedItemFromMyList();
       this.viewCtrl.dismiss({ item: item });
     }

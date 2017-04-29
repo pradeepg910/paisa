@@ -77,11 +77,13 @@ export class HomePage {
         let item = obj.item;
         item.timestamp = this.today.toISOString();
         item.monthYear = this.today.getMonth() + "-" + this.today.getFullYear();
+        let conditionalDesc = this.getDescriptionConditionally(item);
         this.items.push({
           title: item.title,
           amount: +item.amount,
-          description: this.getDescriptionConditionally(item),
-          descShort: _.truncate(item.description, {'length': 15}),
+          description: conditionalDesc,
+          descShort: _.truncate(conditionalDesc, {'length': 15}),
+          category: item.category,
           timestamp: item.timestamp,
           monthYear: item.monthYear
         });

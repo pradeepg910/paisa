@@ -10,6 +10,12 @@
         <ion-label floating>Total</ion-label>
         <ion-input #amount ngControl="amount" formControlName="amount" type="number" [class.invalid]="!newExpenseForm.controls.amount.valid"></ion-input>
       </ion-item>
+      <ion-item>
+        <ion-label>Category</ion-label>
+        <ion-select #list ngControl="category" formControlName="category">
+          <ion-option *ngFor="let category of categories | async">{{category.name}}</ion-option>
+        </ion-select>
+      </ion-item>
       <ion-item *ngIf="itemExists">
         <ion-label>Shopping List</ion-label>
         <ion-select #list ngControl="selectedItems" formControlName="selectedItems" multiple="true">
